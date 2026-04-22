@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Joyeux Anniversaire Georgette ❤️ - Ma femme forte et inspirante</title>
+    
+    <!-- Open Graph pour WhatsApp/Réseaux Sociaux -->
+    <meta property="og:title" content="Joyeux Anniversaire Georgette ❤️ - À la femme exceptionnelle que tu es">
+    <meta property="og:description" content="Une surprise spéciale pour toi, mon amour. Fière de la femme incroyable que tu es devenue.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=1000">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Librairie pour la capture de la carte -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --primary-pink: #f8bbd0;
+            --dark-pink: #e91e63;
+            --soft-gold: #d4af37;
+            --white-translucent: rgba(255, 255, 255, 0.85);
+            --text-color: #5d4037;
+            --purple-accent: #9c27b0;
+            --peach: #ffab91;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Transitions de sections --- */
+        .page-section {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Accueil / Hero --- */
+        #hero {
+            background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 70%);
+        }
+
+        h1.name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: var(--dark-pink);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--purple-accent);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .countdown-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            font-size: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-romantic {
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 50px;
+            background: var(--dark-pink);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .btn-romantic:hover {
+            transform: scale(1.05);
+            background: #c2185b;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+        }
+
+        /* --- Audio Control --- */
+        #audio-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        /* --- Quiz Interactif --- */
+        #quiz-card {
+            background: var(--white-translucent);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid white;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid var(--primary-pink);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quiz-option:hover { background: #fce4ec; }
+
+        #quiz-feedback {
+            margin-top: 15px;
+            min-height: 24px;
+            font-style: italic;
+            color: var(--dark-pink);
+        }
+
+        /* --- Message Final --- */
+        .final-message-box {
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .typing-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            min-height: 150px;
+        }
+
+        .encouragement-text {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        /* --- Canvas Particules --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 500;
+        }
+
+        /* --- Bougie Virtuelle Améliorée --- */
+        .cake-container { 
+            margin: 40px 0; 
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        .flame {
+            width: 20px; 
+            height: 35px;
+            background: radial-gradient(circle, #ff9800, #ff5722);
+            border-radius: 50% 50% 20% 20%;
+            margin: 0 auto;
+            animation: flicker 0.1s infinite alternate;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.6);
+            position: relative;
+            top: 5px;
+        }
+        @keyframes flicker { 
+            0% { opacity: 0.8; transform: scale(0.95); box-shadow: 0 0 10px orange; } 
+            100% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 25px #ff5722; } 
+        }
+        .flame.out { 
+            display: none; 
+        }
+        .cake-base {
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(145deg, #ff80ab, #f06292);
+            border-radius: 15px 15px 8px 8px;
+            margin-top: -5px;
+            position: relative;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .cake-base::before {
+            content: "🎂";
+            position: absolute;
+            font-size: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -25px;
+        }
+        #wish-message {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark-pink);
+            min-height: 60px;
+            transition: all 0.5s;
+        }
+        #cake-tip { 
+            font-size: 0.8rem; 
+            margin-top: 10px; 
+            color: #888; 
+        }
+
+        /* --- Modal Carte --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+
+        #card-preview {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(to bottom, #f8bbd0, #ffffff);
+            border: 8px double var(--soft-gold);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        /* Effet coeurs flottants */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1.2rem;
+            animation: floatUp 3s ease-out forwards;
+            z-index: 1001;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            h1.name { font-size: 3rem; }
+            .typing-text { font-size: 1.3rem; }
+            .encouragement-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-bg"></canvas>
+
+    <div id="audio-controls" onclick="toggleAudio()">
+        <span id="audio-icon">🔇</span>
+    </div>
+
+    <!-- AUDIO : Remplace le lien par ta musique préférée -->
+    <audio id="bg-music" loop autoplay>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/04/Warm-Light.mp3" type="audio/mpeg">
+        <!-- TU PEUX REMPLACER LE LIEN CI-DESSUS PAR TA PROPRE MUSIQUE -->
+    </audio>
+
+    <!-- SECTION 1 : ACCUEIL -->
+    <section id="hero" class="page-section active">
+        <div class="heart-icon" style="font-size: 3rem; color: var(--dark-pink);">❤️🌹❤️</div>
+        <h1 class="name">Georgette</h1>
+        <div class="subtitle">✨ Ma force, mon inspiration, mon amour ✨</div>
+        
+        <div id="countdown-timer" class="countdown-container">
+            <!-- Rempli par JS -->
+        </div>
+
+        <div id="status-message" style="margin-top: 10px; font-weight: 300;"></div>
+
+        <button class="btn-romantic" id="btn-open" onclick="startExperience()">Ouvrir la surprise</button>
+    </section>
+
+    <!-- SECTION 2 : QUIZ -->
+    <section id="quiz" class="page-section">
+        <div id="quiz-card">
+            <p id="quiz-progress" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: #888;">Question 1 sur 3</p>
+            <h2 id="quiz-question" style="margin-bottom: 20px;">Quelle est notre chanson ?</h2>
+            <div id="quiz-options">
+                <!-- Rempli par JS -->
+            </div>
+            <p id="quiz-feedback"></p>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : MESSAGE FINAL AVEC TEXTE ENCOURAGEANT -->
+    <section id="celebration" class="page-section">
+        <div class="final-message-box">
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--dark-pink); margin-bottom: 20px;">Joyeux Anniversaire mon Amour</h2>
+            <p id="typing-msg" class="typing-text"></p>
+            
+            <!-- Message d'encouragement femme forte -->
+            <div class="encouragement-text" id="encouragementMsg"></div>
+
+            <div class="cake-container" onclick="blowCandle()">
+                <div id="candle-flame" class="flame"></div>
+                <div style="width: 10px; height: 45px; background: #eee; margin: 0 auto; border-radius: 5px;"></div>
+                <div class="cake-base"></div>
+                <p id="cake-tip">(Clique sur la flamme pour la souffler)</p>
+                <div id="wish-message"></div>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-romantic" onclick="showCardModal()">Générer ma carte 💌</button>
+                <button class="btn-romantic" onclick="replayConfettis()">✨ Plus de paillettes ✨</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL CARTE -->
+    <div id="card-modal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem;">&times;</span>
+            <h3>Ta Carte Personnalisée</h3>
+            
+            <div id="card-preview">
+                <h2 style="font-family: 'Dancing Script', cursive; color: var(--dark-pink);">Georgette</h2>
+                <div style="margin: 20px 0; font-size: 1.2rem;">🌹💪🌹</div>
+                <p id="card-msg-preview" style="font-style: italic;"></p>
+                <div style="margin-top: auto; font-size: 0.8rem; color: var(--soft-gold);">Fait avec amour • 23 de ce mois</div>
+            </div>
+
+            <input type="text" id="custom-name" placeholder="Prénom" value="Georgette" style="padding: 8px; margin: 5px;">
+            <input type="text" id="custom-age" placeholder="Âge" style="padding: 8px; margin: 5px;">
+            <br>
+            <button class="btn-romantic" onclick="downloadCard()" style="padding: 10px 20px; font-size: 0.9rem;">Télécharger PNG</button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * CONFIGURATION & STATE
+         */
+        const targetDay = 23;
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+        let birthdayDate = new Date(currentYear, currentMonth, targetDay);
+        
+        // Si la date est déjà passée ce mois-ci, on prend l'année prochaine
+        if (new Date() > birthdayDate) {
+            birthdayDate = new Date(currentYear + 1, currentMonth, targetDay);
+        }
+        
+        let quizStep = 0;
+        const quizData = [
+            {
+                q: "Quelle est la qualité qui te rend si forte ?",
+                a: ["Ton courage", "Ta résilience", "Ton intelligence", "Tout ça et bien plus"],
+                correct: 3,
+                hint: "Indice : Tu es un mélange parfait de tout ce qui est beau ✨"
+            },
+            {
+                q: "Malgré les épreuves, qu'est-ce qui te permet d'avancer ?",
+                a: ["Ton sourire", "Ton travail acharné", "Ton amour pour les tiens", "Ta détermination sans faille"],
+                correct: 3,
+                hint: "Indice : Rien ne t'arrête quand tu as un objectif !"
+            },
+            {
+                q: "Ce que j'admire le plus chez toi ?",
+                a: ["Ta douceur", "Ta force intérieure", "Ton humour", "Ta façon d'aimer"],
+                correct: 1,
+                hint: "Indice : C'est ce qui te rend unique et si spéciale à mes yeux 💖"
+            }
+        ];
+
+        const finalMessage = "Ma douce et forte Georgette, ❤️\n\nEn ce jour si spécial, je veux te dire à quel point je suis fier de la femme que tu es. Tu traverses la vie avec un courage qui me laisse sans voix. Chaque matin, tu te lèves, tu te bats, tu travailles, tu souris malgré tout. Tu es mon exemple, mon pilier, ma raison de croire que tout est possible.\n\nTu es une guerrière magnifique, une travailleuse acharnée, et malgré les soucis de la vie, tu restes cette lumière qui éclaire mon monde.\n\nJe t'aime plus que les mots ne pourront jamais le dire. Joyeux anniversaire, mon amour, ma fierté, ma vie. 💪🌹❤️";
+        
+        const encouragementText = "🌸 À toi, femme battante, travailleuse infatigable, celle qui ne baisse jamais les bras. Tu es la preuve vivante que la force et la douceur peuvent cohabiter. Continue de briller, de rêver, de conquérir le monde à ta façon. Je suis tellement fier d'être à tes côtés. Tu mérites tout le bonheur du monde. 🌸";
+
+        /**
+         * INITIALISATION
+         */
+        window.onload = () => {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            setupCanvas();
+            startFloatingHearts();
+            
+            // Tentative de lecture auto (beaucoup de navigateurs bloquent, mais on essaye)
+            const audio = document.getElementById('bg-music');
+            audio.volume = 0.3;
+            audio.play().catch(e => console.log("Cliquez sur l'icône audio pour activer la musique"));
+        };
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = birthdayDate - now;
+            const statusMsg = document.getElementById('status-message');
+            const countdownEl = document.getElementById('countdown-timer');
+
+            if (now.getDate() === targetDay && now.getMonth() === currentMonth) {
+                countdownEl.innerHTML = "🎂 C'est AUJOURD'HUI ! 🎂";
+                statusMsg.innerHTML = "Le grand jour est enfin là, ma merveilleuse Georgette !";
+            } else if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / 1000 / 60) % 60);
+                const secs = Math.floor((diff / 1000) % 60);
+                
+                countdownEl.innerHTML = `
+                    <div>${days}j</div>
+                    <div>${hours}h</div>
+                    <div>${mins}m</div>
+                    <div>${secs}s</div>
+                `;
+                statusMsg.innerHTML = "Prépare-toi pour une surprise inoubliable...";
+            } else {
+                countdownEl.innerHTML = "Le 23 est passé... mais l'amour est éternel ❤️";
+                statusMsg.innerHTML = "Mieux vaut tard que jamais, chaque jour est une fête avec toi !";
+            }
+        }
+
+        /**
+         * NAVIGATION & AUDIO
+         */
+        function startExperience() {
+            document.getElementById('hero').classList.remove('active');
+            document.getElementById('quiz').classList.add('active');
+            document.getElementById('audio-controls').style.display = 'block';
+            loadQuiz();
+        }
+
+        function toggleAudio() {
+            const audio = document.getElementById('bg-music');
+            const icon = document.getElementById('audio-icon');
+            if (audio.paused) {
+                audio.play().catch(e => console.log("Interaction requise"));
+                icon.innerText = "🔊";
+            } else {
+                audio.pause();
+                icon.innerText = "🔇";
+            }
+        }
+
+        /**
+         * QUIZ LOGIC
+         */
+        function loadQuiz() {
+            const data = quizData[quizStep];
+            document.getElementById('quiz-progress').innerText = `Question ${quizStep + 1} sur ${quizData.length}`;
+            document.getElementById('quiz-question').innerText = data.q;
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = '';
+            
+            data.a.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index);
+                optionsBox.appendChild(btn);
+            });
+            document.getElementById('quiz-feedback').innerText = '';
+        }
+
+        function checkAnswer(idx) {
+            const data = quizData[quizStep];
+            if (idx === data.correct) {
+                quizStep++;
+                if (quizStep < quizData.length) {
+                    document.getElementById('quiz-feedback').innerText = "Bravo ! 🥰 Tu me connais si bien...";
+                    setTimeout(loadQuiz, 1000);
+                } else {
+                    showFinalCelebration();
+                }
+            } else {
+                document.getElementById('quiz-feedback').innerText = data.hint + " Essaie encore, mon amour !";
+            }
+        }
+
+        /**
+         * CELEBRATION & TYPING
+         */
+        function showFinalCelebration() {
+            document.getElementById('quiz').classList.remove('active');
+            document.getElementById('celebration').classList.add('active');
+            startParticles();
+            typeWriter(finalMessage, 'typing-msg', 35);
+            
+            // Afficher le message d'encouragement après un petit délai
+            setTimeout(() => {
+                const encouragementDiv = document.getElementById('encouragementMsg');
+                encouragementDiv.innerHTML = encouragementText;
+                encouragementDiv.style.opacity = '0';
+                encouragementDiv.style.transition = 'opacity 1s';
+                setTimeout(() => { encouragementDiv.style.opacity = '1'; }, 100);
+            }, 2000);
+        }
+
+        function typeWriter(text, elementId, speed) {
+            let i = 0;
+            const el = document.getElementById(elementId);
+            el.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        /**
+         * BOUGIE SOUFFLÉE AMÉLIORÉE AVEC VŒUX ET ANIMATIONS
+         */
+        let candleBlown = false;
+        
+        function blowCandle() {
+            if (candleBlown) return;
+            
+            const flame = document.getElementById('candle-flame');
+            const wishDiv = document.getElementById('wish-message');
+            const cakeTip = document.getElementById('cake-tip');
+            
+            flame.classList.add('out');
+            candleBlown = true;
+            
+            // Message de vœux personnalisé
+            const wishes = [
+                "🎈 Je te souhaite une année remplie de réussite ! 🎈",
+                "💪 Que ta force intérieure te guide vers tes rêves ! 💪",
+                "🌟 Continue d'éclairer le monde avec ta lumière ! 🌟",
+                "🌸 Que chaque jour t'apporte la joie que tu mérites ! 🌸",
+                "💖 Je serai toujours là pour toi, dans les bons comme dans les moments plus durs. 💖"
+            ];
+            
+            let index = 0;
+            function showNextWish() {
+                if (index < wishes.length) {
+                    wishDiv.innerHTML = wishes[index];
+                    wishDiv.style.opacity = '0';
+                    wishDiv.style.transform = 'scale(0.8)';
+                    wishDiv.style.transition = 'all 0.5s';
+                    setTimeout(() => {
+                        wishDiv.style.opacity = '1';
+                        wishDiv.style.transform = 'scale(1)';
+                    }, 50);
+                    index++;
+                    setTimeout(showNextWish, 2500);
+                } else {
+                    cakeTip.innerHTML = "✨ Tes vœux sont exaucés, mon amour ! ✨";
+                }
+            }
+            showNextWish();
+            
+            // Animation de confettis supplémentaire
+            for(let i=0; i<80; i++) {
+                particles.push(new Particle(window.innerWidth/2, window.innerHeight/2, true));
+            }
+            // Créer des cœurs flottants
+            for(let i=0; i<30; i++) {
+                createFloatingHeart();
+            }
+            cakeTip.innerHTML = "🎂 Vœu soufflé ! Que tous tes rêves se réalisent 🎂";
+        }
+        
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = ['❤️','💖','💗','💓','🌹'][Math.floor(Math.random()*5)];
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '0px';
+            heart.style.fontSize = (Math.random() * 20 + 16) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+        
+        function startFloatingHearts() {
+            setInterval(() => {
+                if (document.getElementById('celebration').classList.contains('active')) {
+                    if (Math.random() < 0.3) createFloatingHeart();
+                }
+            }, 2000);
+        }
+        
+        function replayConfettis() {
+            for(let i=0; i<100; i++) {
+                particles.push(new Particle(Math.random() * window.innerWidth, -20, true));
+            }
+            for(let i=0; i<20; i++) createFloatingHeart();
+        }
+
+        /**
+         * CANVAS PARTICLES (Pétales & Confettis)
+         */
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function setupCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor(x, y, isConfetti = false) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || -20;
+                this.size = Math.random() * 8 + 4;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 + 1.5;
+                this.color = isConfetti ? `hsl(${Math.random()*360}, 70%, 60%)` : '#f8bbd0';
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 3;
+                this.isConfetti = isConfetti;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                if (this.isConfetti) {
+                    ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                } else {
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size/2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        function startParticles() {
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (particles.length < 80 && Math.random() < 0.1) {
+                    particles.push(new Particle());
+                }
+                particles.forEach((p, index) => {
+                    p.update();
+                    p.draw();
+                    if (p.y > canvas.height) particles.splice(index, 1);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        /**
+         * CARTE VIRTUELLE
+         */
+        function showCardModal() {
+            document.getElementById('card-modal').style.display = 'flex';
+            document.getElementById('card-msg-preview').innerHTML = "Tu es une femme forte, battante et tellement aimée. Poursuis tes rêves, je serai toujours là. Joyeux anniversaire ma merveilleuse Georgette ❤️";
+        }
+
+        function closeModal() {
+            document.getElementById('card-modal').style.display = 'none';
+        }
+
+        function downloadCard() {
+            const card = document.getElementById('card-preview');
+            html2canvas(card, { scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Carte_Georgette_FemmeForte.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        // Responsive resize
+        window.addEventListener('resize', () => {
+            setupCanvas();
+        });
+
+    </script>
+</body>
+</html>
