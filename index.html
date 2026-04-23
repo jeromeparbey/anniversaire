@@ -182,30 +182,290 @@
             margin: 0 auto;
         }
 
-        .typing-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            line-height: 1.5;
-            min-height: 120px;
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            background: rgba(255,255,255,0.4);
-            border-radius: 20px;
-            margin: 15px 0;
-            text-align: center;
-            word-wrap: break-word;
-            white-space: pre-wrap;
+       /* LETTRE ROMANTIQUE - STYLE ÉLÉGANT ET PROFESSIONNEL */
+.typing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    text-align: center;
+    color: #4a3729;
+    transform: rotate(-0.2deg);
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+/* Animation d'apparition fluide */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: rotate(-1deg) translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(-0.2deg) translateY(0);
+    }
+}
+
+.typing-text {
+    animation: fadeSlideUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+}
+
+/* Première lettre en évidence */
+.typing-text::first-letter {
+    font-size: 1.9em;
+    font-weight: 600;
+    color: #e91e63;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: -0.02em;
+}
+
+/* Ligne fine décorative */
+.typing-text::after {
+    content: '✦';
+    display: block;
+    font-size: 0.8rem;
+    color: #d4af37;
+    margin-top: 20px;
+    letter-spacing: 8px;
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .typing-text {
+        font-size: 1.1rem;
+        line-height: 1.65;
+    }
+    
+    .typing-text::first-letter {
+        font-size: 1.7em;
+    }
+}
+
+@media (max-width: 480px) {
+    .typing-text {
+        font-size: 0.95rem;
+        line-height: 1.55;
+    }
+    
+    .typing-text::first-letter {
+        font-size: 1.5em;
+    }
+    
+    .typing-text::after {
+        font-size: 0.7rem;
+        margin-top: 15px;
+    }
+}
+        /* Animation d'entrée de la lettre */
+        @keyframes letterEntry {
+            0% {
+                opacity: 0;
+                transform: rotate(-5deg) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: rotate(-0.5deg) translateY(0);
+            }
         }
 
+        .typing-text {
+            animation: letterEntry 0.8s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+        }
+
+        /* Effet de brillance sur la lettre */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .typing-text {
+            background-size: 200% auto;
+            background-image: linear-gradient(135deg, 
+                rgba(255,255,255,0.95) 0%,
+                rgba(255,245,250,0.95) 25%,
+                rgba(255,255,255,0.98) 50%,
+                rgba(255,245,250,0.95) 75%,
+                rgba(255,255,255,0.95) 100%);
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        /* Cœurs flottants autour de la lettre */
+        .floating-hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .floating-heart-letter {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: floatHeartLetter 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatHeartLetter {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) rotate(20deg);
+            }
+        }
+
+        /* Animation pour le message de félicitations */
+        .final-score-animated {
+            font-size: 1.35rem;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, #fff5f8, #fff0f5);
+            border-radius: 20px;
+            color: var(--dark-pink);
+            text-align: center;
+            animation: pulseGlow 2s ease-in-out infinite, starBurst 0.6s ease-out;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.2);
+            border: 2px solid rgba(233,30,99,0.2);
+            position: relative;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(233, 30, 99, 0.2);
+                border-color: rgba(233,30,99,0.2);
+            }
+            50% {
+                transform: scale(1.01);
+                box-shadow: 0 8px 30px rgba(233, 30, 99, 0.35);
+                border-color: rgba(233,30,99,0.5);
+            }
+        }
+
+        @keyframes starBurst {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Message d'encouragement animé */
         .encouragement-text {
             font-size: 1rem;
-            margin-top: 15px;
-            padding: 12px;
-            background: rgba(255,255,255,0.5);
+            margin-top: 20px;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.08), rgba(233, 30, 99, 0.08));
             border-radius: 20px;
             font-weight: 500;
             word-wrap: break-word;
+            color: #9c27b0;
+            font-style: italic;
+            animation: fadeInUp 0.8s ease-out;
+            border-left: 4px solid var(--dark-pink);
+            border-right: 4px solid var(--purple-accent);
+            transition: all 0.3s ease;
+        }
+
+        .encouragement-text:hover {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.12), rgba(233, 30, 99, 0.12));
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation pour le score (Bravo) */
+        #finalScoreDisplay {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, #fff5f8, #fff0f5);
+            border-radius: 18px;
+            color: var(--purple-accent);
+            text-align: center;
+            animation: slideInRight 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        #finalScoreDisplay::before {
+            content: '🎉';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: bounce 1s ease-in-out infinite;
+            font-size: 1.3rem;
+        }
+
+        #finalScoreDisplay::after {
+            content: '🎊';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: bounce 1s ease-in-out infinite 0.5s;
+            font-size: 1.3rem;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.2);
+            }
         }
 
         /* --- Galerie Photos responsive --- */
@@ -392,72 +652,167 @@
             100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
         }
 
-        /* Responsive */
+        /* --- RESPONSIVE PERFECTIONNÉ SANS DÉBORDEMENT --- */
+        @media (max-width: 992px) {
+            .final-message-box {
+                max-width: 95%;
+                padding: 10px;
+            }
+            
+            .typing-text {
+                font-size: 1.1rem;
+                padding: 25px 20px;
+                line-height: 1.6;
+            }
+        }
+
         @media (max-width: 768px) {
             .final-message-box {
-                padding: 10px;
+                padding: 8px;
             }
-            h1.name { font-size: 3rem; }
+            
+            h1.name { 
+                font-size: 3rem; 
+            }
+            
             .typing-text { 
                 font-size: 1rem; 
-                max-height: 250px;
-                padding: 12px;
+                padding: 20px 18px;
+                line-height: 1.55;
+                transform: rotate(-0.3deg);
             }
+            
+            .typing-text:hover {
+                transform: rotate(-0.5deg) scale(1.005);
+            }
+            
             .encouragement-text { 
                 font-size: 0.85rem; 
-                padding: 10px;
+                padding: 12px 15px;
             }
+            
             .photo-item img, .photo-placeholder { 
                 width: 100px; 
                 height: 100px; 
             }
+            
             .photo-item {
                 margin: 0 5px;
             }
+            
             .cake-base {
                 width: 100px;
                 height: 50px;
             }
+            
             .cake-base::before {
                 font-size: 1.6rem;
                 top: -24px;
             }
+            
             .flame {
                 width: 16px;
                 height: 28px;
             }
+            
             #finalScoreDisplay {
+                font-size: 0.95rem;
+                padding: 12px 35px;
+            }
+            
+            #finalScoreDisplay::before {
+                left: 10px;
                 font-size: 1rem;
             }
+            
+            #finalScoreDisplay::after {
+                right: 10px;
+                font-size: 1rem;
+            }
+            
+            .final-score-animated {
+                font-size: 1rem;
+                padding: 15px;
+            }
+            
             .btn-romantic {
                 padding: 10px 25px;
                 font-size: 0.8rem;
                 margin-top: 15px;
             }
+            
             #quiz-card {
                 padding: 25px;
             }
+            
             .quiz-option {
                 padding: 10px;
                 font-size: 0.9rem;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .typing-text { 
                 font-size: 0.9rem;
-                max-height: 200px;
+                padding: 18px 15px;
+                line-height: 1.5;
             }
+            
             .photo-item img, .photo-placeholder { 
-                width: 80px; 
-                height: 80px; 
+                width: 75px; 
+                height: 75px; 
             }
+            
             .encouragement-text {
                 font-size: 0.75rem;
+                padding: 10px 12px;
             }
+            
             h2 {
-                font-size: 1.5rem !important;
+                font-size: 1.3rem !important;
             }
+            
+            #finalScoreDisplay {
+                font-size: 0.85rem;
+                padding: 10px 30px;
+            }
+            
+            .final-score-animated {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+            
+            .btn-romantic {
+                padding: 8px 20px;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .typing-text {
+                font-size: 0.85rem;
+                padding: 15px 12px;
+            }
+            
+            .photo-item img, .photo-placeholder {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .final-message-box {
+                padding: 5px;
+            }
+        }
+
+        /* Empêche tout débordement horizontal */
+        body, .page-section, .final-message-box, .typing-text {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
+        /* Animation de scroll fluide */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -492,7 +847,7 @@
     <!-- SECTION 2 : QUIZ (6 questions avec points) -->
     <section id="quiz" class="page-section">
         <div id="quiz-card">
-            <div class="score-display" id="scoreDisplay">💰 Gains : 0 FCFA (0/6 bonnes réponses)</div>
+            <div class="score-display" id="scoreDisplay"> Gains : 0 FCFA (0/6 bonnes réponses)</div>
             <p id="quiz-progress" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: #888;">Question 1 sur 6</p>
             <h2 id="quiz-question" style="margin-bottom: 20px;"></h2>
             <div id="quiz-options"></div>
@@ -558,13 +913,52 @@
         
         // QUIZ - 6 questions
         const quizData = [
-            { q: "Où avons-nous eu notre premier rendez-vous ?", a: ["Au restaurant", "Au cinéma", "À la plage", "Dans un parc"], correct: 3, correctText: "Dans un parc", value: 5000 },
-            { q: "Quelle est ma couleur préférée ?", a: ["Rouge", "Bleu", "Rose", "Violet"], correct: 2, correctText: "Rose", value: 5000 },
-            { q: "Quel est mon plat préféré que tu prépares ?", a: ["Pâtes", "Riz sauté", "Tarte maison", "Salade"], correct: 2, correctText: "Tarte maison", value: 5000 },
-            { q: "Quelle est la qualité que j'aime le plus chez toi ?", a: ["Ton sourire", "Ta gentillesse", "Ta force", "Ton humour"], correct: 2, correctText: "Ta force", value: 5000 },
-            { q: "Notre chanson préférée ?", a: ["La vie en rose", "Perfect", "Imagine", "Shape of you"], correct: 0, correctText: "La vie en rose", value: 5000 },
-            { q: "Quel est mon rêve pour nous deux ?", a: ["Voyager", "Fonder une famille", "Construire notre maison", "Tout cela"], correct: 3, correctText: "Tout cela", value: 5000 }
-        ];
+    { 
+        q: "🎵 QUESTION 1 : Quel est le titre de la chanson qui se joue actuellement ?", 
+        a: ["Girlfriend", "Baby", "Love Me", "Diana"], 
+        correct: 0, 
+        correctText: "Girlfriend - Le tube qui nous fait danser ! 🎶", 
+        value: 5000 
+    },
+    { 
+        q: "🎤 QUESTION 2 : Qui est l'auteur de cette chanson ?", 
+        a: ["Burna Boy", "Wizkid", "Ruger", "Davido"], 
+        correct: 2, 
+        correctText: "Ruger - L'artiste talentueux qui a composé ce hit ! 🔥", 
+        value: 5000 
+    },
+    { 
+        q: "📊 QUESTION 3 : Cette chanson a combien de vues sur YouTube ?", 
+        a: ["50 Millions", "100 Millions", "170 Millions", "250 Millions"], 
+        correct: 2, 
+        correctText: "170 Millions de vues - Un véritable succès planétaire ! 🌍", 
+        value: 5000 
+    },
+    { 
+        q: "🧠 QUESTION 4 : Un père a 4 enfants : Appelle, Double, Triple, et quel est le nom du quatrième ?", 
+        a: ["Quadruple", "Quatre", "Le quatrième", "Appelle"], 
+        correct: 3, 
+        correctText: "Appelle (car les enfants s'appellent : Appelle, Double, Triple, et le 4ème est... le 1er enfant !)", 
+        value: 5000,
+        explanation: "C'est un piège classique ! On pense au chiffre 4 mais le 4ème enfant a déjà un prénom : Appelle."
+    },
+    { 
+        q: "⏳ QUESTION 5 : Si 3 chats attrapent 3 souris en 3 minutes, combien de chats faut-il pour attraper 100 souris en 100 minutes ?", 
+        a: ["100 chats", "33 chats", "3 chats", "10 chats"], 
+        correct: 2, 
+        correctText: "3 chats (1 chat attrape 1 souris en 3 min, donc en 100 min il attrape ≈33 souris, 3 chats = 100 souris)", 
+        value: 5000,
+        explanation: "Le taux est constant : 1 chat = 1 souris / 3 minutes. En 100 min, 1 chat attrape 33,3 souris. Donc 3 chats suffisent."
+    },
+   { 
+    q: "📅 QUESTION 6 : Françoise, Rachida et Ruth partent en déplacement professionnel. Si Françoise part le lundi, Rachida part 2 jours après Françoise, et Ruth part 3 jours avant Tchao, quel jour Ruth part-elle ?", 
+    a: ["Lundi", "Mardi", "Mercredi", "Jeudi"], 
+    correct: 0, 
+    correctText: "Lundi (Françoise = lundi, Tchao = mercredi (lundi+2), Ruth = 3 jours avant mercredi = lundi)", 
+    value: 5000,
+    explanation: "Un problème de logique temporelle : Françoise (J1), Rachida (J3), Ruth (J3-3=J0 = lundi). Elles partent toutes le même jour !"
+}
+];
 
         let currentQuestionIndex = 0;
         let userAnswers = new Array(6).fill(null);
@@ -744,19 +1138,11 @@ function createPhotoGallery() {
         "image4.jpg"
     ];
     
-    // Afficher tes 4 images
+    // Afficher seulement tes 4 images
     for (let i = 0; i < photoFiles.length; i++) {
         const div = document.createElement('div');
         div.className = 'photo-item';
         div.innerHTML = `<img src="${photoFiles[i]}" alt="Souvenir ${i+1}" loading="lazy" onerror="this.src='https://placehold.co/130x130/f8bbd0/white?text=📸'">`;
-        gallery.appendChild(div);
-    }
-    
-    // Ajouter 4 placeholders pour compléter (total 8)
-    for (let i = photoFiles.length; i < 8; i++) {
-        const div = document.createElement('div');
-        div.className = 'photo-item';
-        div.innerHTML = `<div class="photo-placeholder">📸<br>Bientôt</div>`;
         gallery.appendChild(div);
     }
 }
@@ -903,21 +1289,20 @@ function createPhotoGallery() {
             for(let i=0; i<25; i++) createFloatingHeart();
         }
 
-        function typeWriter(text, elementId, speed) {
-            let i = 0;
-            const el = document.getElementById(elementId);
-            if (!el) return;
-            el.innerHTML = "";
-            function type() {
-                if (i < text.length) {
-                    el.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                    el.scrollTop = el.scrollHeight;
-                }
-            }
-            type();
+       function typeWriter(text, elementId, speed) {
+    let i = 0;
+    const el = document.getElementById(elementId);
+    if (!el) return;
+    el.innerHTML = "";
+    function type() {
+        if (i < text.length) {
+            el.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
         }
+    }
+    type();
+}
 
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
