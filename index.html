@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Joyeux Anniversaire Georgette ❤️ - Ma femme forte et inspirante</title>
+    
+    <!-- Open Graph pour WhatsApp/Réseaux Sociaux -->
+    <meta property="og:title" content="Joyeux Anniversaire Georgette ❤️ - À la femme exceptionnelle que tu es">
+    <meta property="og:description" content="Une surprise spéciale pour toi, mon amour. Fière de la femme incroyable que tu es devenue.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&q=80&w=1000">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Librairie pour la capture de la carte -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --primary-pink: #f8bbd0;
+            --dark-pink: #e91e63;
+            --soft-gold: #d4af37;
+            --white-translucent: rgba(255, 255, 255, 0.85);
+            --text-color: #5d4037;
+            --purple-accent: #9c27b0;
+            --peach: #ffab91;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #fce4ec 100%);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Transitions de sections --- */
+        .page-section {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Accueil / Hero --- */
+        #hero {
+            background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 70%);
+        }
+
+        h1.name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: var(--dark-pink);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--purple-accent);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .countdown-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            font-size: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-romantic {
+            padding: 15px 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 50px;
+            background: var(--dark-pink);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .btn-romantic:hover {
+            transform: scale(1.05);
+            background: #c2185b;
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+        }
+
+        .btn-next {
+            background: #9c27b0;
+            margin-top: 20px;
+        }
+
+        /* --- Audio Control --- */
+        #audio-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        /* --- Quiz Interactif --- */
+        #quiz-card {
+            background: var(--white-translucent);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid white;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid var(--primary-pink);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .quiz-option:hover { background: #fce4ec; }
+        .quiz-option.selected { background: #c8e6c9; border-color: #4caf50; }
+        .quiz-option.wrong-answer { background: #ffcdd2; border-color: #f44336; }
+
+        #quiz-feedback {
+            margin-top: 15px;
+            min-height: 60px;
+            font-style: italic;
+            color: var(--dark-pink);
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.7);
+        }
+
+        .score-display {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--purple-accent);
+        }
+
+        /* --- Message Final --- */
+        .final-message-box {
+            max-width: 950px;
+            width: 100%;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+        .typing-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            line-height: 1.5;
+            min-height: 120px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 20px;
+            margin: 15px 0;
+            text-align: center;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .encouragement-text {
+            font-size: 1rem;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 20px;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+        /* --- Galerie Photos responsive --- */
+        .photo-gallery {
+            margin: 20px 0;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .photo-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+        .photo-gallery::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .photo-gallery::-webkit-scrollbar-thumb {
+            background: var(--dark-pink);
+            border-radius: 10px;
+        }
+        .photo-item {
+            display: inline-block;
+            margin: 0 8px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+        .photo-item:hover {
+            transform: scale(1.03);
+        }
+        .photo-item img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .photo-placeholder {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(145deg, #f8bbd0, #fce4ec);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            color: var(--dark-pink);
+        }
+
+        /* --- Canvas Particules --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 500;
+        }
+
+        /* --- Bougie Virtuelle Améliorée --- */
+        .cake-container { 
+            margin: 25px 0; 
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        .flame {
+            width: 20px; 
+            height: 34px;
+            background: radial-gradient(circle, #ff9800, #ff5722, #ffeb3b);
+            border-radius: 50% 50% 20% 20%;
+            margin: 0 auto;
+            animation: flicker 0.08s infinite alternate;
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.8);
+            position: relative;
+            top: 5px;
+        }
+        @keyframes flicker { 
+            0% { opacity: 0.7; transform: scale(0.9); box-shadow: 0 0 10px orange; } 
+            100% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 30px #ff5722, 0 0 10px #ffeb3b; } 
+        }
+        .flame.out { 
+            display: none; 
+        }
+        .cake-base {
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(145deg, #ff80ab, #f06292);
+            border-radius: 15px 15px 8px 8px;
+            margin-top: -5px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .cake-base::before {
+            content: "🎂";
+            position: absolute;
+            font-size: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -28px;
+        }
+        .cake-base::after {
+            content: "❤️";
+            position: absolute;
+            font-size: 0.9rem;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #wish-message {
+            margin-top: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--dark-pink);
+            min-height: 60px;
+            transition: all 0.5s;
+            padding: 0 10px;
+        }
+        #cake-tip { 
+            font-size: 0.7rem; 
+            margin-top: 8px; 
+            color: #888; 
+        }
+        .smoke {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: radial-gradient(circle, rgba(200,200,200,0.6), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: smokeRise 2s ease-out forwards;
+        }
+        @keyframes smokeRise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.6; }
+            100% { transform: translateY(-70px) scale(2); opacity: 0; }
+        }
+
+        /* --- Modal Carte --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+
+        #card-preview {
+            width: 280px;
+            height: 380px;
+            background: linear-gradient(to bottom, #f8bbd0, #ffffff);
+            border: 8px double var(--soft-gold);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 15px auto;
+        }
+
+        /* Effet coeurs flottants */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            font-size: 1rem;
+            animation: floatUp 3s ease-out forwards;
+            z-index: 1001;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .final-message-box {
+                padding: 10px;
+            }
+            h1.name { font-size: 3rem; }
+            .typing-text { 
+                font-size: 1rem; 
+                max-height: 250px;
+                padding: 12px;
+            }
+            .encouragement-text { 
+                font-size: 0.85rem; 
+                padding: 10px;
+            }
+            .photo-item img, .photo-placeholder { 
+                width: 100px; 
+                height: 100px; 
+            }
+            .photo-item {
+                margin: 0 5px;
+            }
+            .cake-base {
+                width: 100px;
+                height: 50px;
+            }
+            .cake-base::before {
+                font-size: 1.6rem;
+                top: -24px;
+            }
+            .flame {
+                width: 16px;
+                height: 28px;
+            }
+            #finalScoreDisplay {
+                font-size: 1rem;
+            }
+            .btn-romantic {
+                padding: 10px 25px;
+                font-size: 0.8rem;
+                margin-top: 15px;
+            }
+            #quiz-card {
+                padding: 25px;
+            }
+            .quiz-option {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-text { 
+                font-size: 0.9rem;
+                max-height: 200px;
+            }
+            .photo-item img, .photo-placeholder { 
+                width: 80px; 
+                height: 80px; 
+            }
+            .encouragement-text {
+                font-size: 0.75rem;
+            }
+            h2 {
+                font-size: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-bg"></canvas>
+
+    <div id="audio-controls" onclick="toggleAudio()">
+        <span id="audio-icon">🔇</span>
+    </div>
+
+    <!-- AUDIO : Deux chansons -->
+    <audio id="bg-music-1" loop>
+        <source src="music1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="bg-music-2" loop>
+        <source src="music2.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SECTION 1 : ACCUEIL -->
+    <section id="hero" class="page-section active">
+        <div class="heart-icon" style="font-size: 3rem; color: var(--dark-pink);">❤️🌹❤️</div>
+        <h1 class="name">Georgette</h1>
+        <div class="subtitle">✨ Ma force, mon inspiration, mon amour ✨</div>
+        
+        <div id="countdown-timer" class="countdown-container"></div>
+        <div id="status-message" style="margin-top: 10px; font-weight: 300;"></div>
+
+        <button class="btn-romantic" id="btn-open" onclick="startExperience()">Ouvrir la surprise</button>
+    </section>
+
+    <!-- SECTION 2 : QUIZ (6 questions avec points) -->
+    <section id="quiz" class="page-section">
+        <div id="quiz-card">
+            <div class="score-display" id="scoreDisplay">💰 Gains : 0 FCFA (0/6 bonnes réponses)</div>
+            <p id="quiz-progress" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: #888;">Question 1 sur 6</p>
+            <h2 id="quiz-question" style="margin-bottom: 20px;"></h2>
+            <div id="quiz-options"></div>
+            <div id="quiz-feedback"></div>
+            <button class="btn-romantic btn-next" id="nextQuestionBtn" style="display: none;" onclick="nextQuestion()">Suivant ➡️</button>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : MESSAGE FINAL + PHOTOS + BOUGIE -->
+    <section id="celebration" class="page-section">
+        <div class="final-message-box">
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: var(--dark-pink); margin-bottom: 15px;">Joyeux Anniversaire mon Amour</h2>
+            
+            <!-- Galerie photos de souvenirs -->
+            <div class="photo-gallery" id="photoGallery"></div>
+            
+            <div id="finalScoreDisplay" style="font-size: 1.2rem; font-weight: bold; margin: 12px 0; color: var(--purple-accent);"></div>
+            
+            <div id="typing-msg" class="typing-text"></div>
+            
+            <div class="encouragement-text" id="encouragementMsg"></div>
+
+            <div class="cake-container" onclick="blowCandle()">
+                <div id="candle-flame" class="flame"></div>
+                <div style="width: 10px; height: 42px; background: #e0c8a0; margin: 0 auto; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>
+                <div class="cake-base"></div>
+                <p id="cake-tip">(Clique sur la flamme pour la souffler)</p>
+                <div id="wish-message"></div>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-romantic" onclick="showCardModal()">Générer ma carte 💌</button>
+                <button class="btn-romantic" onclick="replayConfettis()">✨ Plus de paillettes ✨</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL CARTE -->
+    <div id="card-modal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()" style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem;">&times;</span>
+            <h3>Ta Carte Personnalisée</h3>
+            <div id="card-preview">
+                <h2 style="font-family: 'Dancing Script', cursive; color: var(--dark-pink);">Georgette</h2>
+                <div style="margin: 20px 0; font-size: 1.2rem;">🌹💪🌹</div>
+                <p id="card-msg-preview" style="font-style: italic;"></p>
+                <div style="margin-top: auto; font-size: 0.8rem; color: var(--soft-gold);">Fait avec amour • 23 AVRIL 2026</div>
+            </div>
+            <input type="text" id="custom-name" placeholder="Prénom" value="Georgette" style="padding: 8px; margin: 5px;">
+            <input type="text" id="custom-age" placeholder="Âge" style="padding: 8px; margin: 5px;">
+            <br>
+            <button class="btn-romantic" onclick="downloadCard()" style="padding: 10px 20px; font-size: 0.9rem;">Télécharger PNG</button>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURATION
+        const targetDay = 23;
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+        let birthdayDate = new Date(currentYear, currentMonth, targetDay);
+        if (new Date() > birthdayDate) birthdayDate = new Date(currentYear + 1, currentMonth, targetDay);
+        
+        // QUIZ - 6 questions
+        const quizData = [
+            { q: "Où avons-nous eu notre premier rendez-vous ?", a: ["Au restaurant", "Au cinéma", "À la plage", "Dans un parc"], correct: 3, correctText: "Dans un parc", value: 5000 },
+            { q: "Quelle est ma couleur préférée ?", a: ["Rouge", "Bleu", "Rose", "Violet"], correct: 2, correctText: "Rose", value: 5000 },
+            { q: "Quel est mon plat préféré que tu prépares ?", a: ["Pâtes", "Riz sauté", "Tarte maison", "Salade"], correct: 2, correctText: "Tarte maison", value: 5000 },
+            { q: "Quelle est la qualité que j'aime le plus chez toi ?", a: ["Ton sourire", "Ta gentillesse", "Ta force", "Ton humour"], correct: 2, correctText: "Ta force", value: 5000 },
+            { q: "Notre chanson préférée ?", a: ["La vie en rose", "Perfect", "Imagine", "Shape of you"], correct: 0, correctText: "La vie en rose", value: 5000 },
+            { q: "Quel est mon rêve pour nous deux ?", a: ["Voyager", "Fonder une famille", "Construire notre maison", "Tout cela"], correct: 3, correctText: "Tout cela", value: 5000 }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(6).fill(null);
+        let answerGivenForCurrentQuestion = false;
+        let selectedOptionIndex = null;
+        let quizCompleted = false;
+
+        const finalMessage = "Ma douce et forte Georgette, ❤️\n\nEn ce jour si spécial, je veux te dire à quel point je suis fier de la femme que tu es. Tu traverses la vie avec un courage qui me laisse sans voix. Chaque matin, tu te lèves, tu te bats, tu travailles, tu souris malgré tout. Tu es mon exemple, mon pilier, ma raison de croire que tout est possible.\n\nTu es une guerrière magnifique, une travailleuse acharnée, et malgré les soucis de la vie, tu restes cette lumière qui éclaire mon monde.\n\nJe t'aime plus que les mots ne pourront jamais le dire. Joyeux anniversaire, mon amour, ma fierté, ma vie. 💪🌹❤️";
+        
+        const encouragementText = "🌸 À toi, femme battante, travailleuse infatigable, celle qui ne baisse jamais les bras. Tu es la preuve vivante que la force et la douceur peuvent cohabiter. Continue de briller, de rêver, de conquérir le monde à ta façon. Je suis tellement fier d'être à tes côtés. Tu mérites tout le bonheur du monde. 🌸";
+
+        let audio1 = document.getElementById('bg-music-1');
+        let audio2 = document.getElementById('bg-music-2');
+        let currentAudio = audio1;
+
+        function stopAllMusic() {
+            audio1.pause();
+            audio2.pause();
+            audio1.currentTime = 0;
+            audio2.currentTime = 0;
+        }
+
+        function playMusic1() {
+            stopAllMusic();
+            currentAudio = audio1;
+            audio1.volume = 0.3;
+            audio1.play().catch(e => console.log("Musique 1: clic requis"));
+        }
+
+        function playMusic2() {
+            stopAllMusic();
+            currentAudio = audio2;
+            audio2.volume = 0.3;
+            audio2.play().catch(e => console.log("Musique 2: clic requis"));
+        }
+
+        function updateScoreDisplay() {
+            let correctCount = 0;
+            for (let i = 0; i < userAnswers.length; i++) {
+                if (userAnswers[i] !== null && userAnswers[i] === quizData[i].correct) correctCount++;
+            }
+            let totalPoints = correctCount * 5000;
+            document.getElementById('scoreDisplay').innerHTML = `💰 Gains : ${totalPoints.toLocaleString()} FCFA (${correctCount}/6 bonnes réponses)`;
+            return { correctCount, totalPoints };
+        }
+
+        function loadQuestion() {
+            const data = quizData[currentQuestionIndex];
+            document.getElementById('quiz-progress').innerText = `Question ${currentQuestionIndex + 1} sur ${quizData.length}`;
+            document.getElementById('quiz-question').innerText = data.q;
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = '';
+            selectedOptionIndex = null;
+            answerGivenForCurrentQuestion = false;
+            
+            data.a.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-option';
+                if (userAnswers[currentQuestionIndex] === idx) {
+                    btn.classList.add('selected');
+                    selectedOptionIndex = idx;
+                    answerGivenForCurrentQuestion = true;
+                }
+                btn.innerText = opt;
+                btn.onclick = () => selectAnswer(idx);
+                optionsBox.appendChild(btn);
+            });
+            
+            if (userAnswers[currentQuestionIndex] !== null) {
+                const wasCorrect = userAnswers[currentQuestionIndex] === quizData[currentQuestionIndex].correct;
+                const correctAnswerText = quizData[currentQuestionIndex].correctText;
+                if (wasCorrect) {
+                    document.getElementById('quiz-feedback').innerHTML = `✅ BRAVO ! Tu as gagné 5000 FCFA ! La bonne réponse était bien : "${correctAnswerText}". Tu peux passer à la suite. 🎉`;
+                } else {
+                    document.getElementById('quiz-feedback').innerHTML = `❌ Dommage ! Tu n'as pas gagné pour cette question. La bonne réponse était : "${correctAnswerText}". Continue comme ça pour la suite ! 💪`;
+                }
+            } else {
+                document.getElementById('quiz-feedback').innerHTML = "📝 Choisis une réponse ci-dessous. À chaque bonne réponse, tu gagnes 5000 FCFA !";
+            }
+            document.getElementById('nextQuestionBtn').style.display = 'block';
+        }
+
+        function selectAnswer(idx) {
+            if (answerGivenForCurrentQuestion) {
+                document.getElementById('quiz-feedback').innerHTML = "⚠️ Tu as déjà répondu à cette question ! Passe à la suivante.";
+                return;
+            }
+            
+            const data = quizData[currentQuestionIndex];
+            selectedOptionIndex = idx;
+            userAnswers[currentQuestionIndex] = idx;
+            answerGivenForCurrentQuestion = true;
+            
+            const btns = document.querySelectorAll('.quiz-option');
+            btns.forEach((btn, i) => {
+                if (i === idx) {
+                    btn.classList.add('selected');
+                    if (idx === data.correct) {
+                        btn.style.background = "#c8e6c9";
+                    } else {
+                        btn.classList.add('wrong-answer');
+                    }
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+            
+            if (idx === data.correct) {
+                document.getElementById('quiz-feedback').innerHTML = `✅🎉 BRAVO ! Tu as gagné 5000 FCFA ! La bonne réponse était bien : "${data.correctText}". Félicitations ! 🎉✅`;
+                for(let i=0; i<30; i++) particles.push(new Particle(window.innerWidth/2, window.innerHeight/2, true));
+            } else {
+                document.getElementById('quiz-feedback').innerHTML = `❌ Perdu cette fois... La bonne réponse était : "${data.correctText}". Ne lâche rien, la prochaine sera la bonne ! 💪❌`;
+            }
+            
+            updateScoreDisplay();
+        }
+
+        function nextQuestion() {
+            if (!answerGivenForCurrentQuestion && userAnswers[currentQuestionIndex] === null) {
+                document.getElementById('quiz-feedback').innerHTML = "⚠️ Choisis une réponse avant de continuer !";
+                return;
+            }
+            
+            if (currentQuestionIndex + 1 < quizData.length) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            quizCompleted = true;
+            const { correctCount, totalPoints } = updateScoreDisplay();
+            
+            playMusic2();
+            
+            document.getElementById('quiz').classList.remove('active');
+            document.getElementById('celebration').classList.add('active');
+            document.getElementById('audio-controls').style.display = 'block';
+            
+            let messageGains = "";
+            if (correctCount === 6) {
+                messageGains = "🏆 PARFAIT ! Tu as tout bon ! 🏆 🎉 Tu remportes " + totalPoints.toLocaleString() + " FCFA ! Exceptionnel ! 🎉";
+            } else if (correctCount >= 4) {
+                messageGains = "🏆 Super résultat ! " + correctCount + "/6 bonnes réponses. 💰 Tu repars avec " + totalPoints.toLocaleString() + " FCFA ! Bravo ! 💰";
+            } else if (correctCount >= 2) {
+                messageGains = "👍 Pas mal ! " + correctCount + "/6 bonnes réponses. 💰 Tu gagnes " + totalPoints.toLocaleString() + " FCFA ! Continue comme ça ! 💰";
+            } else {
+                messageGains = "💪 " + correctCount + "/6 bonnes réponses. 💰 Tu gagnes " + totalPoints.toLocaleString() + " FCFA ! La prochaine fois tu feras encore mieux ! 💪";
+            }
+            
+            document.getElementById('finalScoreDisplay').innerHTML = messageGains;
+            
+            startParticles();
+            typeWriter(finalMessage, 'typing-msg', 30);
+            
+            setTimeout(() => {
+                const encouragementDiv = document.getElementById('encouragementMsg');
+                encouragementDiv.innerHTML = encouragementText;
+                encouragementDiv.style.opacity = '0';
+                encouragementDiv.style.transition = 'opacity 1s';
+                setTimeout(() => { encouragementDiv.style.opacity = '1'; }, 100);
+            }, 2000);
+            
+            createPhotoGallery();
+        }
+function createPhotoGallery() {
+    const gallery = document.getElementById('photoGallery');
+    gallery.innerHTML = '';
+    
+    // Tes 4 images locales (dans le même dossier que index.html)
+    const photoFiles = [
+        "image1.jpg",
+        "image2.jpg",
+        "image3.jpg",
+        "image4.jpg"
+    ];
+    
+    // Afficher tes 4 images
+    for (let i = 0; i < photoFiles.length; i++) {
+        const div = document.createElement('div');
+        div.className = 'photo-item';
+        div.innerHTML = `<img src="${photoFiles[i]}" alt="Souvenir ${i+1}" loading="lazy" onerror="this.src='https://placehold.co/130x130/f8bbd0/white?text=📸'">`;
+        gallery.appendChild(div);
+    }
+    
+    // Ajouter 4 placeholders pour compléter (total 8)
+    for (let i = photoFiles.length; i < 8; i++) {
+        const div = document.createElement('div');
+        div.className = 'photo-item';
+        div.innerHTML = `<div class="photo-placeholder">📸<br>Bientôt</div>`;
+        gallery.appendChild(div);
+    }
+}
+
+        window.onload = () => {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            setupCanvas();
+            startFloatingHearts();
+            playMusic1();
+        };
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = birthdayDate - now;
+            const statusMsg = document.getElementById('status-message');
+            const countdownEl = document.getElementById('countdown-timer');
+
+            if (now.getDate() === targetDay && now.getMonth() === currentMonth) {
+                countdownEl.innerHTML = "🎂 C'est AUJOURD'HUI ! 🎂";
+                statusMsg.innerHTML = "Le grand jour est enfin là, ma merveilleuse Georgette !";
+            } else if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / 1000 / 60) % 60);
+                const secs = Math.floor((diff / 1000) % 60);
+                countdownEl.innerHTML = `<div>${days}j</div><div>${hours}h</div><div>${mins}m</div><div>${secs}s</div>`;
+                statusMsg.innerHTML = "Prépare-toi pour une surprise inoubliable...";
+            } else {
+                countdownEl.innerHTML = "Le 23 est passé... mais l'amour est éternel ❤️";
+                statusMsg.innerHTML = "Mieux vaut tard que jamais, chaque jour est une fête avec toi !";
+            }
+        }
+
+        function startExperience() {
+            document.getElementById('hero').classList.remove('active');
+            document.getElementById('quiz').classList.add('active');
+            document.getElementById('audio-controls').style.display = 'block';
+            currentQuestionIndex = 0;
+            userAnswers = new Array(6).fill(null);
+            answerGivenForCurrentQuestion = false;
+            selectedOptionIndex = null;
+            updateScoreDisplay();
+            loadQuestion();
+            playMusic1();
+        }
+
+        function toggleAudio() {
+            if (currentAudio.paused) {
+                currentAudio.play();
+                document.getElementById('audio-icon').innerText = "🔊";
+            } else {
+                currentAudio.pause();
+                document.getElementById('audio-icon').innerText = "🔇";
+            }
+        }
+
+        let candleBlown = false;
+        
+        function createSmoke() {
+            const flame = document.getElementById('candle-flame');
+            if (!flame) return;
+            const rect = flame.getBoundingClientRect();
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smoke.style.left = (rect.left + rect.width/2 - 9) + 'px';
+            smoke.style.top = (rect.top - 8) + 'px';
+            document.body.appendChild(smoke);
+            setTimeout(() => smoke.remove(), 2000);
+        }
+        
+        function blowCandle() {
+            if (candleBlown) return;
+            
+            const flame = document.getElementById('candle-flame');
+            const wishDiv = document.getElementById('wish-message');
+            const cakeTip = document.getElementById('cake-tip');
+            
+            for(let i = 0; i < 8; i++) {
+                setTimeout(() => createSmoke(), i * 100);
+            }
+            
+            if (flame) flame.classList.add('out');
+            candleBlown = true;
+            
+            const wishes = [
+                "🎈 Je te souhaite une année remplie de réussite ! 🎈",
+                "💪 Que ta force intérieure te guide vers tes rêves ! 💪",
+                "🌟 Continue d'éclairer le monde avec ta lumière ! 🌟",
+                "🌸 Que chaque jour t'apporte la joie que tu mérites ! 🌸",
+                "💖 Je serai toujours là pour toi, dans les bons comme dans les moments plus durs. 💖"
+            ];
+            
+            let index = 0;
+            function showNextWish() {
+                if (index < wishes.length) {
+                    if (wishDiv) {
+                        wishDiv.innerHTML = wishes[index];
+                        wishDiv.style.opacity = '0';
+                        wishDiv.style.transform = 'scale(0.8)';
+                        wishDiv.style.transition = 'all 0.5s';
+                        setTimeout(() => {
+                            if (wishDiv) {
+                                wishDiv.style.opacity = '1';
+                                wishDiv.style.transform = 'scale(1)';
+                            }
+                        }, 50);
+                    }
+                    index++;
+                    setTimeout(showNextWish, 2500);
+                } else {
+                    if (cakeTip) cakeTip.innerHTML = "✨ Tes vœux sont exaucés, mon amour ! ✨";
+                }
+            }
+            showNextWish();
+            
+            for(let i=0; i<100; i++) particles.push(new Particle(window.innerWidth/2, window.innerHeight/2, true));
+            for(let i=0; i<40; i++) createFloatingHeart();
+            if (cakeTip) cakeTip.innerHTML = "🎂 Vœu soufflé ! Que tous tes rêves se réalisent 🎂";
+        }
+        
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = ['❤️','💖','💗','💓','🌹'][Math.floor(Math.random()*5)];
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '0px';
+            heart.style.fontSize = (Math.random() * 16 + 12) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+        
+        function startFloatingHearts() {
+            setInterval(() => {
+                const celebration = document.getElementById('celebration');
+                if (celebration && celebration.classList.contains('active')) {
+                    if (Math.random() < 0.3) createFloatingHeart();
+                }
+            }, 2000);
+        }
+        
+        function replayConfettis() {
+            for(let i=0; i<120; i++) particles.push(new Particle(Math.random() * window.innerWidth, -20, true));
+            for(let i=0; i<25; i++) createFloatingHeart();
+        }
+
+        function typeWriter(text, elementId, speed) {
+            let i = 0;
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            el.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                    el.scrollTop = el.scrollHeight;
+                }
+            }
+            type();
+        }
+
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function setupCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor(x, y, isConfetti = false) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || -20;
+                this.size = Math.random() * 8 + 4;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 + 1.5;
+                this.color = isConfetti ? `hsl(${Math.random()*360}, 70%, 60%)` : '#f8bbd0';
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 3;
+                this.isConfetti = isConfetti;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                if (this.isConfetti) {
+                    ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                } else {
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size, this.size/2, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        function startParticles() {
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (particles.length < 80 && Math.random() < 0.1) particles.push(new Particle());
+                particles.forEach((p, index) => {
+                    p.update();
+                    p.draw();
+                    if (p.y > canvas.height) particles.splice(index, 1);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function showCardModal() {
+            document.getElementById('card-modal').style.display = 'flex';
+            document.getElementById('card-msg-preview').innerHTML = "Tu es une femme forte, battante et tellement aimée. Poursuis tes rêves, je serai toujours là. Joyeux anniversaire ma merveilleuse Georgette ❤️";
+        }
+
+        function closeModal() { document.getElementById('card-modal').style.display = 'none'; }
+
+        function downloadCard() {
+            const card = document.getElementById('card-preview');
+            html2canvas(card, { scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Carte_Georgette_FemmeForte.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        window.addEventListener('resize', () => setupCanvas());
+    </script>
+</body>
+</html>
